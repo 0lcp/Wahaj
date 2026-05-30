@@ -1,3 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>وَهَج | متجر الشموع</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fbf6f1;
+      color: #4a3b33;
+    }
+
+    header {
+      background: linear-gradient(90deg, #6b4f3a, #a07a5a);
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #a07a5a, #d6b49a);
+      color: white;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 26px;
+      color: #6b4f3a;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(107,79,58,0.15);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .price {
+      color: #a07a5a;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #6b4f3a;
+      color: white;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #4e3728;
+    }
+
+    /* 🛒 السلة */
+    .cart {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      width: 260px;
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .cart h3 {
+      margin: 0 0 10px;
+      color: #6b4f3a;
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+      max-height: 130px;
+      overflow-y: auto;
+    }
+
+    .cart li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .cart button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 20px;
+      background: #25D366;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #6b4f3a;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .insta-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>وَهَج 🕯️</h1>
+</header>
+
+<section class="hero">
+  <h2>شموع دافئة بروح فنية ✨</h2>
+  <p>أضف شموعك للسلة واطلب بسهولة</p>
+</section>
+
+<h2 class="section-title">🕯️ شموعنا</h2>
+
+<section class="products">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1602874801006-8d6e8c7d9f9b">
+    <div class="card-content">
+      <h3>شمعة فانيلا</h3>
+      <div class="price">5$</div>
+      <button class="btn" onclick="addToCart('شمعة فانيلا')">أضف للسلة</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1602524818010-8f8d1a3f8d2d">
+    <div class="card-content">
+      <h3>شمعة لافندر</h3>
+      <div class="price">6$</div>
+      <button class="btn" onclick="addToCart('شمعة لافندر')">أضف للسلة</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1616628182505-3c5a8a5f1a2e">
+    <div class="card-content">
+      <h3>شمعة ورد</h3>
+      <div class="price">7$</div>
+      <button class="btn" onclick="addToCart('شمعة ورد')">أضف للسلة</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- 🛒 السلة -->
+<div class="cart">
+  <h3>🛒 السلة</h3>
+  <ul id="cartItems"></ul>
+  <button onclick="sendOrder()">إرسال الطلب 📩</button>
+</div>
+
+<a class="insta-btn" href="https://instagram.com/USERNAME" target="_blank">
+  تابعنا 📸
+</a>
+
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -53,3 +273,6 @@ function sendOrder() {
 
 renderCart();
 </script>
+
+</body>
+</html>
